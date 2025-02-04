@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
   #ifdef _WIN32
   std::setlocale(LC_ALL, "Portuguese_Brazil.1252");
   system("@echo off");
-  system("@Beta");
+  system("title @Beta");
   #else
   std::setlocale(LC_ALL, "pt_BR.UTF-8");
   #endif
