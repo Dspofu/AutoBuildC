@@ -9,4 +9,4 @@ if %errorLevel% neq 0 (
   exit
 )
 copy %DIR%out/buildcpp.exe C:\Windows\System32
-start 
+start
