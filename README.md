@@ -1,4 +1,5 @@
 # autoBuildC
+> Copy and paste the executable into the path: `C:\Windows\System32`
 
 **autoBuildC** is a simple Windows executable named `cbuild` that helps you quickly compile all `.c` or `.cpp` files in the current directory and its subdirectories using `gcc` or `g++`.
 
