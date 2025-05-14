@@ -11,6 +11,10 @@
 - Visual mode prints all detected file paths before compiling.
 - Supports both C and C++ source file filters.
 
+## Example
+
+<img src="https://github.com/Dspofu/AutoBuildC/blob/main/demo.png">
+
 ## Usage
 
 ```bash
