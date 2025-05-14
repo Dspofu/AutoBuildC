@@ -13,7 +13,7 @@
 
 ## Example
 
-<img src="https://github.com/Dspofu/AutoBuildC/blob/main/demo.png">
+<img src="https://github.com/Dspofu/AutoBuildC/blob/main/image.png">
 
 ## Usage
 
