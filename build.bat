@@ -1,7 +1,7 @@
 @echo OFF
 set "DIR=%~dp0"
 cd /d "%DIR%"
-g++ -static main.cpp modules/colors.cpp -o out/buildcpp.exe
+g++ -static main.cpp modules/colors.cpp -o out/cbuild.exe
 net session >nul 2>&1
 if %errorLevel% neq 0 (
   echo Permiss pending...

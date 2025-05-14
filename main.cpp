@@ -68,7 +68,7 @@ int main(int argc, char* argv[]) {
   }
   for (auto i : filesDir) { files += (i+" ").c_str(); }
   files += "-o "+nameOpc;
-  if (logsOpc) std::cout << Colors::PURPLE << "Code: " << Colors::GREEN << files;
+  if (logsOpc) std::cout << Colors::PURPLE << "Code: " << Colors::GREEN << files << std::endl;
 
   // std::cout << argc << "    " << argv << Colors::RED << std::endl; // Local memory
   // std::cout << "Index 0" << filesDir[0] << Colors::DEFAULT << std::endl;
