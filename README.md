@@ -19,17 +19,15 @@ cbuild [options]
 
 ### Options
 
-* `-gcc`
-  Filters and compiles only `.c` files using **GCC**.
+* `-gcc` Filters and compiles only `.c` files using **gcc**. `Default option.`
 
-* `-g++`
-  Filters and compiles only `.cpp` files using **G++**.
+* `-g++` Filters and compiles only `.cpp` files using **g++**.
 
-* `-l`
-  Enables **visual mode**, which prints out the full paths of all detected source files before compiling.
+* `-l` Enables **visual mode**, which prints out the full paths of all detected source files before compiling.
 
-* `-name <filename>`
-  Sets the output executable name. Default is `main.exe`.
+* `-static` Creates in static mode.
+
+* `-name <filename>` Sets the output executable name. Default is `main.exe`.
 
 ## Example Commands
 
@@ -39,10 +37,10 @@ Compile all `.c` files with `gcc` and show the file paths:
 cbuild -gcc -l
 ```
 
-Compile all `.cpp` files with `g++` and name the output `myApp.exe`:
+Compile in static mode all `.cpp` files with `g++` and name the output `myApp.exe`:
 
 ```bash
-cbuild -g++ -name myApp.exe
+cbuild -g++ -static -name myApp.exe
 ```
 
 ## Notes

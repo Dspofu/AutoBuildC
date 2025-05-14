@@ -6,6 +6,8 @@
 #include "./modules/colors.h"
 #include <conio.h>
 #include <vector>
+#include <algorithm>
+#include <cctype>
 
 std::vector <std::string> filesDir;
 
@@ -22,8 +24,8 @@ int main(int argc, char* argv[]) {
   bool logsOpc = false;
   bool staticOpc = false;
   std::string nameOpc = "main.exe";
-  std::string files = "g++ ";
-  std::string filter = ".cpp";
+  std::string code = "gcc ";
+  std::string filter = ".c";
 
   #ifdef _WIN32
   std::setlocale(LC_ALL, "Portuguese_Brazil.1252");
@@ -38,14 +40,19 @@ int main(int argc, char* argv[]) {
     return 1;
   }
   for (int c = 1; c < argc; c++) {
-    if (std::string(argv[c]) == "-l" || std::string(argv[c]) == "-L") logsOpc = true;
-    if (std::string(argv[c]) == "-gcc" || std::string(argv[c]) == "-GCC") {
-      files = "gcc ";
-      filter = ".c";
+    std::string args(argv[c]);
+    std::transform(args.begin(), args.end(), args.begin(), [](unsigned char ch) { return std::tolower(ch); });
+    if (args == "-l") logsOpc = true;
+    // if (args == "-gcc") {
+    //   files = "gcc ";
+    //   filter = ".c";
+    // }
+    if (args == "-g++") {
+      code = "g++ ";
+      filter = ".cpp";
     }
-    if (std::string(argv[c]) == "-g++" || std::string(argv[c]) == "-G++") files = "g++ ";
-    if (std::string(argv[c]) == "-static" || std::string(argv[c]) == "-STATIC") staticOpc = true;
-    if (std::string(argv[c]) == "-name") {
+    if (args == "-static") staticOpc = true;
+    if (args == "-name") {
       nameOpc = std::string(argv[c+1]);
       if (nameOpc.substr(nameOpc.length()-4) != ".exe") {
         std::cout << Colors::RED << "-name \"YourProgram.exe\"" << Colors::DEFAULT;
@@ -53,25 +60,26 @@ int main(int argc, char* argv[]) {
       }
     };
   }
-  if (filter == ".c" && files == "g++ ") {
+  if (filter == ".c" && code != "gcc " || filter == ".cpp" && code != "g++ ") {
     std::cout << Colors::RED << "Parameter to filter wrongly used \"C\" and \"C++\" files" << Colors::DEFAULT;
     return 1;
   }
-  if (staticOpc) files += "-static ";
-  if (logsOpc) std::cout << "Loading Files" << std::endl;
+  if (staticOpc) code += "-static ";
+  if (logsOpc) std::cout << Colors::YELLOW << "Loading Files\n" << Colors::DEFAULT << std::endl;
   std::filesystem::path path = std::filesystem::current_path(); // path atual
   loopPath(path, filter, logsOpc);
 
   if (filesDir.size() < 1) {
-    if (logsOpc) std::cout << Colors::RED << "Files not found." << Colors::DEFAULT;
+    std::cout << Colors::RED << "No \"" << Colors::GRAY << filter << Colors::RED << "\" files found" << Colors::DEFAULT;
     return 1;
   }
-  for (auto i : filesDir) { files += (i+" ").c_str(); }
-  files += "-o "+nameOpc;
-  if (logsOpc) std::cout << Colors::PURPLE << "Code: " << Colors::GREEN << files << std::endl;
+  for (auto i : filesDir) { code += (i+" ").c_str(); }
+  code += "-o "+nameOpc;
+  if (logsOpc) std::cout << Colors::PURPLE << "\nRunning: " << Colors::GREEN << code << std::endl;
 
   // std::cout << argc << "    " << argv << Colors::RED << std::endl; // Local memory
   // std::cout << "Index 0" << filesDir[0] << Colors::DEFAULT << std::endl;
-  std::cout << Colors::DEFAULT << "Build completed.";
+  system(code.c_str());
+  std::cout << Colors::DEFAULT << "Build finished.";
   return 0;
 }
