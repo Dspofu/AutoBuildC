@@ -1,7 +1,7 @@
 # autoBuildC
-> Copy and paste the executable into the path: `C:\Windows\System32`
+> Windows: Copy and paste the executable into the path: `C:\Windows\System32` (Global)
 
-**autoBuildC** is a simple Windows executable named `cbuild` that helps you quickly compile all `.c` or `.cpp` files in the current directory and its subdirectories using `gcc` or `g++`.
+**autoBuildC** is a simple helper for Windows and Linux (Ubuntu) that uses `g++` or `gcc` (GNU). This application, nicknamed `cbuild`, helps you quickly compile all `.c` or `.cpp` files in the current or selected directory. It scans project folders and subfolders for files with the selected extensions.
 
 ## Features
 
@@ -19,7 +19,7 @@
 
 ```bash
 cbuild [options]
-````
+```
 
 ### Options
 
@@ -51,8 +51,9 @@ cbuild -g++ -flags "-static" -name myApp.exe
 
 ## Notes
 
-* This tool is built specifically for **Windows**.
-* Make sure `gcc` or `g++` is available in your system's PATH.
+* This tool was initially created for **Windows**, but it is now compatible with Linux systems.
+
+* Make sure that `gcc` or `g++` is available in your system's PATH.
 
 ## License
 

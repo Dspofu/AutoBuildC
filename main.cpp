@@ -4,7 +4,6 @@
 #include <fstream>
 #include <locale.h>
 #include "./modules/colors.h"
-#include <conio.h>
 #include <vector>
 #include <algorithm>
 #include <cctype>
@@ -107,10 +106,10 @@ int main(int argc, char* argv[]) {
   std::filesystem::current_path(current_path);
   try {
     int err = system(code.c_str());
-    if (err == 0) std::cout << Colors::DEFAULT << "Build finished.";
-    else std::cout << Colors::RED << "\nCheck the compilation" << Colors::DEFAULT;
+    if (err == 0) std::cout << Colors::DEFAULT << "Build finished." << std::endl;
+    else std::cout << Colors::RED << "\nCheck the compilation" << Colors::DEFAULT << std::endl;
   } catch(const std::exception& e) {
-    std::cout << Colors::DEFAULT << "Check the compilation.";
+    std::cout << Colors::DEFAULT << "Check the compilation." << std::endl;
   }
   return 0;
 }
