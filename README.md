@@ -23,13 +23,15 @@ cbuild [options]
 
 ### Options
 
+* `-path <dirname>` Enter your project path. Default is where `cmd was started`.
+
+* `-flags <multi-flags>` To use with other flags in your project..
+
 * `-gcc` Filters and compiles only `.c` files using **gcc**. `Default option.`
 
 * `-g++` Filters and compiles only `.cpp` files using **g++**.
 
-* `-l` Enables **visual mode**, which prints out the full paths of all detected source files before compiling.
-
-* `-static` Creates in static mode.
+* `-logs` Enables **visual mode**, which prints out the full paths of all detected source files before compiling.
 
 * `-name <filename>` Sets the output executable name. Default is `main.exe`.
 
@@ -38,13 +40,13 @@ cbuild [options]
 Compile all `.c` files with `gcc` and show the file paths:
 
 ```bash
-cbuild -gcc -l
+cbuild -gcc -logs
 ```
 
 Compile in static mode all `.cpp` files with `g++` and name the output `myApp.exe`:
 
 ```bash
-cbuild -g++ -static -name myApp.exe
+cbuild -g++ -flags "-static" -name myApp.exe
 ```
 
 ## Notes
